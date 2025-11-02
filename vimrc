@@ -14,7 +14,7 @@ inoremap {{ {
 inoremap {} {}
 
 autocmd filetype cpp nnoremap <F9> :w <bar> !g++ -std=c++20 % -o %:r -Wl,--stack,268435456 && %:r<CR>
-autocmd filetype cpp nnoremap <F10> :!%:r<CR>
+autocmd filetype cpp nnoremap <F2> :!%:r<CR>
 autocmd filetype cpp nnoremap <C-C> :s/^\(\s*\)/\1\/\/<CR> :s/^\(\s*\)\/\/\/\//\1<CR> $
 
 set nu
@@ -59,6 +59,26 @@ function MyDiff()
   endif
 endfunction
 
+function! InsertTemplateCpp()
+    call append(0, '#include <bits/stdc++.h>')
+    call append(1, 'using namespace std;')
+    call append(2, '')
+    call append(3, '#define ll long long')
+    call append(4, '')
+    call append(5, 'auto posinf = numeric_limits<int>::max();')
+    call append(6, 'auto neginf = -posinf;')
+    call append(7, '')
+    call append(8, 'void solve() {')
+    call append(9, '')
+    call append(10, '}')
+    call append(11, '')
+    call append(12, 'int main() {')
+    call append(13, '    ios::sync_with_stdio(false);')
+    call append(14, '    cin.tie(nullptr);')
+    call append(15, '')
+    call append(16, '}')
+endfunction
+autocmd BufNewFile *.cpp if line('$') == 1 && getline(1) == '' | call InsertTemplateCpp() | endif
 
 
 
