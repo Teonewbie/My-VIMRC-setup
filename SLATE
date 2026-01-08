@@ -10,6 +10,9 @@ set si
 colorscheme slate
 set t_Co = 256
 set termguicolors
+let &t_SI = "\e[1 q"
+let &t_SR = "\e[1 q"
+let &t_EI = "\e[1 q"
 
 inoremap { {}<Left>
 inoremap {<CR> {<CR>}<Esc>O
